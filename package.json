@@ -1,0 +1,23 @@
+{
+  "name": "playwright-browserstack-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.33.0",
+    "browserstack-node-sdk": "^1.34.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "setup": "yarn && npx playwright install",
+    "test": "npx playwright test",
+    "test:bdd": "cucumber-js -f html:tests/reports/report.html --tags 'not @skip'",
+    "test:debug": "npx playwright test --debug",
+    "test:headed": "npx playwright test --headed",
+    "browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.config.js"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "dependencies": {}
+}
