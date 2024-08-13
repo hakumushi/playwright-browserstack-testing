@@ -2,8 +2,11 @@ import { test, expect } from '@playwright/test'
 import { LoginPage } from './pages/LoginPage'
 import { ProductListPage } from './pages/ProductListPage'
 
-test("Successful login", async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("https://www.saucedemo.com")
+})
+
+test("Successful login", async ({ page }) => {
   const loginPage = new LoginPage(page)
   const productListPage = new ProductListPage(page)
 
@@ -13,7 +16,6 @@ test("Successful login", async ({ page }) => {
 })
 
 test("Wrong password", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com")
   const loginPage = new LoginPage(page)
 
   await loginPage.login("standard_user", "secret-sauce")
@@ -21,7 +23,6 @@ test("Wrong password", async ({ page }) => {
 })
 
 test("Wrong login", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com")
   const loginPage = new LoginPage(page)
 
   await loginPage.login("standard-user", "secret_sauce")
@@ -29,7 +30,6 @@ test("Wrong login", async ({ page }) => {
 })
 
 test("Locked used", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com")
   const loginPage = new LoginPage(page)
 
   await loginPage.login("locked_out_user", "secret_sauce")
